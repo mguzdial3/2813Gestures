@@ -82,12 +82,12 @@ public class GestureTest extends PApplet {
         PVector pos = new PVector();
         pushStyle();
         strokeWeight(15);
-        for (int userId = 1; userId <= 10; userId++)
-        {
-            if(context.isTrackingSkeleton(userId)){
+        for (int userId = 1; userId <= 10; userId++) {
+            if(context.isTrackingSkeleton(userId)) {
                 context.getCoM(userId, pos);
                 PVector displayPos = new PVector();
                 context.convertRealWorldToProjective(pos, displayPos);
+                sendJointPosition(displayPos);
                 stroke(0, 255, 0);
                 point(displayPos.x, displayPos.y);
             }
@@ -95,12 +95,12 @@ public class GestureTest extends PApplet {
         popStyle();
 
         // Draw the skeleton if it's available
-        for(int i = 0; i < 10; i++){
-            if(context.isTrackingSkeleton(i)){
+        for(int i = 0; i < 10; i++) {
+            if(context.isTrackingSkeleton(i)) {
                 fill(0, 0, 255);
                 drawSkeleton(i);
 
-                if(checkGestures == 3){
+                if(checkGestures == 3) {
                     checkGestures = 0;
                     PVector[] joints = new PVector[GestureInfo.JOINTS_LENGTH];
 
@@ -151,7 +151,7 @@ public class GestureTest extends PApplet {
 
                     Gesture response = controller.updateGestures(joints);
 
-                    if(response != null){
+                    if(response != null) {
                         currGesture = response;
                     }
                 } else {
@@ -207,25 +207,27 @@ public class GestureTest extends PApplet {
     }
 
 
-    public void sendJointPosition(int userId) {
-        PVector centerOfMass = new PVector();
+    public void sendJointPosition(final int userId) {
+        if (currGesture == null) return;
 
-        //////////////////
-        // HEAD AND TORSO
-        //////////////////
+        PVector centerOfMass = new PVector();
 
         // Get the joint position of the right hand
         context.getCoM(userId, centerOfMass);
 
-        // Create an OSC message
-        OscMessage gestureMessage = new OscMessage("/" + currGesture.name);
+        sendJointPosition(centerOfMass);
+    }
 
+    public void sendJointPosition(final PVector centerOfMass) {
+        if (currGesture == null) return;
+
+        // Create an OSC message
+        final OscMessage gestureMessage = new OscMessage("/" + currGesture.name);
 
         // Send joint position of all axises by OSC
         gestureMessage.add(centerOfMass.x);
         gestureMessage.add(centerOfMass.y);
         gestureMessage.add(centerOfMass.z);
-
 
         gestureMessage.add(currGesture.confidence);
         gestureMessage.add(currGesture.duration);
