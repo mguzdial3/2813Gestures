@@ -154,8 +154,7 @@ public class GestureTest extends PApplet {
                     if(response != null){
                         currGesture = response;
                     }
-                }
-                else {
+                } else {
                     checkGestures++;
                 }
             }
@@ -163,14 +162,13 @@ public class GestureTest extends PApplet {
         }
         gestureInfoFrame.s.fill(0);
         gestureInfoFrame.s.rect(0, 0, gestureInfoFrame.w, gestureInfoFrame.h);
-        if(currGesture != null){
-            if(currGesture.confidence > 0.1f){
+        if(currGesture != null) {
+            if(currGesture.confidence > 0.1f) {
                 //Erase previous
-
-
-                if(currGesture.confidence > 0){
+                if(currGesture.confidence > 0) {
                     gestureInfoFrame.s.fill(255, 255, 255);
-                    gestureInfoFrame.s.text(currGesture.name+". Con: "+currGesture.confidence +". Dur: "+currGesture.duration +". Tempo: "+currGesture.tempo,0,50);
+                    gestureInfoFrame.s.text(currGesture.name + ". Con: " + currGesture.confidence + ". Dur: "
+                            + currGesture.duration + ". Tempo: " + currGesture.tempo, 0, 50);
                 }
             }
         }
@@ -209,8 +207,7 @@ public class GestureTest extends PApplet {
     }
 
 
-    public void sendJointPosition(int userId)
-    {
+    public void sendJointPosition(int userId) {
         PVector centerOfMass = new PVector();
 
         //////////////////
@@ -239,48 +236,39 @@ public class GestureTest extends PApplet {
 
 // SimpleOpenNI events
 
-    public void onNewUser(int userId)
-    {
+    public void onNewUser(int userId) {
         println("onNewUser - userId: " + userId);
         println("  start pose detection");
 
         if(autoCalib) {
             context.requestCalibrationSkeleton(userId, true);
-        }
-        else {
+        } else {
             context.startPoseDetection("Psi", userId);
         }
     }
 
-    public void onLostUser(int userId)
-    {
+    public void onLostUser(int userId) {
         println("onLostUser - userId: " + userId);
     }
 
-    public void onStartCalibration(int userId)
-    {
+    public void onStartCalibration(int userId) {
         println("onStartCalibration - userId: " + userId);
     }
 
-    public void onEndCalibration(int userId, boolean successfull)
-    {
+    public void onEndCalibration(int userId, boolean successfull) {
         println("onEndCalibration - userId: " + userId + ", successfull: " + successfull);
 
-        if (successfull)
-        {
+        if (successfull) {
             println("  User calibrated !!!");
             context.startTrackingSkeleton(userId);
-        }
-        else
-        {
+        } else {
             println("  Failed to calibrate user !!!");
             println("  Start pose detection");
             context.startPoseDetection("Psi", userId);
         }
     }
 
-    public void onStartPose(String pose, int userId)
-    {
+    public void onStartPose(String pose, int userId) {
         println("onStartPose - userId: " + userId + ", pose: " + pose);
         println(" stop pose detection");
 
