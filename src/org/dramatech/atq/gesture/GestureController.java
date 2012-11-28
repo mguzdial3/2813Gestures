@@ -10,7 +10,7 @@ public class GestureController {
     int[] counters;
     float prevRAngle, prevLAngle, rAngle, lAngle;
 
-    public GestureController(){
+    public GestureController() {
         // NOT CHECK
         Gesture disgust = new Disgust();
         gestures.add(disgust);
@@ -198,59 +198,59 @@ public class GestureController {
 
 
 
-        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_NEAR_HEAD]=   PVector.sub(joints[GestureInfo.LEFT_HAND],joints[GestureInfo.HEAD]).mag()<distanceMeter*2;
-        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_NEAR_HEAD]=   PVector.sub(joints[GestureInfo.RIGHT_HAND],joints[GestureInfo.HEAD]).mag()<distanceMeter*2;
+        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_NEAR_HEAD] = PVector.sub(joints[GestureInfo.LEFT_HAND], joints[GestureInfo.HEAD]).mag() < distanceMeter * 2;
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_NEAR_HEAD] = PVector.sub(joints[GestureInfo.RIGHT_HAND], joints[GestureInfo.HEAD]).mag() < distanceMeter * 2;
 
         //Left knee going back
-        if(GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK]){
-            GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK] = joints[GestureInfo.LEFT_KNEE].z>prevJoints[GestureInfo.LEFT_KNEE].z;
-            if(GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK]){
-                counters[GestureInfo.LEFT_KNEE_GOING_BACK]=3;
+        if(GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK]) {
+            GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK] = joints[GestureInfo.LEFT_KNEE].z > prevJoints[GestureInfo.LEFT_KNEE].z;
+            if(GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK]) {
+                counters[GestureInfo.LEFT_KNEE_GOING_BACK] = 3;
 
             }
-            else{
-                if(counters[GestureInfo.LEFT_KNEE_GOING_BACK]==0){
+            else {
+                if(counters[GestureInfo.LEFT_KNEE_GOING_BACK] == 0) {
                     //Do nothing, it's already false
                 }
-                else{
-                    counters[GestureInfo.LEFT_KNEE_GOING_BACK]-=1;
-                    GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK]=true;
+                else {
+                    counters[GestureInfo.LEFT_KNEE_GOING_BACK] -= 1;
+                    GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK] = true;
                 }
             }
         }
-        else{
-            GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK] = joints[GestureInfo.LEFT_KNEE].z>prevJoints[GestureInfo.LEFT_KNEE].z;
-            if(GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK]){
-                counters[GestureInfo.LEFT_KNEE_GOING_BACK]=3;
+        else {
+            GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK] = joints[GestureInfo.LEFT_KNEE].z > prevJoints[GestureInfo.LEFT_KNEE].z;
+            if(GestureInfo.gesturePieces[GestureInfo.LEFT_KNEE_GOING_BACK]) {
+                counters[GestureInfo.LEFT_KNEE_GOING_BACK] = 3;
             }
         }
 
         //RIGHT knee going back
-        if(GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK]){
-            GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK] = joints[GestureInfo.RIGHT_KNEE].z>prevJoints[GestureInfo.RIGHT_KNEE].z;
-            if(GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK]){
-                counters[GestureInfo.RIGHT_KNEE_GOING_BACK]=3;
+        if(GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK]) {
+            GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK] = joints[GestureInfo.RIGHT_KNEE].z > prevJoints[GestureInfo.RIGHT_KNEE].z;
+            if(GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK]) {
+                counters[GestureInfo.RIGHT_KNEE_GOING_BACK] = 3;
 
             }
-            else{
-                if(counters[GestureInfo.RIGHT_KNEE_GOING_BACK]==0){
+            else {
+                if(counters[GestureInfo.RIGHT_KNEE_GOING_BACK] == 0) {
                     //Do nothing, it's already false
                 }
                 else{
-                    counters[GestureInfo.RIGHT_KNEE_GOING_BACK]-=1;
-                    GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK]=true;
+                    counters[GestureInfo.RIGHT_KNEE_GOING_BACK] -= 1;
+                    GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK] = true;
                 }
             }
         }
         else{
-            GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK] = joints[GestureInfo.RIGHT_KNEE].z>prevJoints[GestureInfo.RIGHT_KNEE].z;
-            if(GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK]){
-                counters[GestureInfo.RIGHT_KNEE_GOING_BACK]=3;
+            GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK] = joints[GestureInfo.RIGHT_KNEE].z > prevJoints[GestureInfo.RIGHT_KNEE].z;
+            if(GestureInfo.gesturePieces[GestureInfo.RIGHT_KNEE_GOING_BACK]) {
+                counters[GestureInfo.RIGHT_KNEE_GOING_BACK] = 3;
             }
         }
 
-        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_BELOW_SHOULDER] = joints[GestureInfo.LEFT_HAND].y<joints[GestureInfo.LEFT_SHOULDER].y &&
-                joints[GestureInfo.LEFT_ELBOW].y<joints[GestureInfo.LEFT_HAND].y;
+        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_BELOW_SHOULDER] = joints[GestureInfo.LEFT_HAND].y < joints[GestureInfo.LEFT_SHOULDER].y
+                && joints[GestureInfo.LEFT_ELBOW].y<joints[GestureInfo.LEFT_HAND].y;
 
         GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_BELOW_SHOULDER] = joints[GestureInfo.RIGHT_HAND].y<joints[GestureInfo.RIGHT_SHOULDER].y &&
                 joints[GestureInfo.RIGHT_ELBOW].y<joints[GestureInfo.RIGHT_HAND].y;
@@ -282,91 +282,106 @@ public class GestureController {
         //println("Hands were together. "+GestureInfo.gesturePieces[GestureInfo.HANDS_TOGETHER]);
 
         //Hands above head
-        GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_UP] = (joints[GestureInfo.RIGHT_HAND].y>joints[GestureInfo.RIGHT_ELBOW].y)&& joints[GestureInfo.RIGHT_ELBOW].y>joints[GestureInfo.RIGHT_SHOULDER].y;
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_UP] =
+                (joints[GestureInfo.RIGHT_HAND].y > joints[GestureInfo.RIGHT_ELBOW].y)
+                        && joints[GestureInfo.RIGHT_ELBOW].y>joints[GestureInfo.RIGHT_SHOULDER].y;
 
-        GestureInfo.gesturePieces[GestureInfo.HANDS_ABOVE_HEAD]=joints[GestureInfo.RIGHT_HAND].y>joints[GestureInfo.HEAD].y && joints[GestureInfo.LEFT_HAND].y>joints[GestureInfo.HEAD].y;
+        GestureInfo.gesturePieces[GestureInfo.HANDS_ABOVE_HEAD] =
+                joints[GestureInfo.RIGHT_HAND].y > joints[GestureInfo.HEAD].y
+                        && joints[GestureInfo.LEFT_HAND].y > joints[GestureInfo.HEAD].y;
 
-        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_ABOVE_HEAD]=joints[GestureInfo.LEFT_HAND].y>joints[GestureInfo.HEAD].y;
+        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_ABOVE_HEAD] =
+                joints[GestureInfo.LEFT_HAND].y > joints[GestureInfo.HEAD].y;
 
-        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_ABOVE_HEAD]=joints[GestureInfo.RIGHT_HAND].y>joints[GestureInfo.HEAD].y;
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_ABOVE_HEAD] =
+                joints[GestureInfo.RIGHT_HAND].y > joints[GestureInfo.HEAD].y;
 
-        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_LEFT_OF_BODY] = joints[GestureInfo.LEFT_HAND].x<joints[GestureInfo.LEFT_SHOULDER].x;
+        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_LEFT_OF_BODY] =
+                joints[GestureInfo.LEFT_HAND].x < joints[GestureInfo.LEFT_SHOULDER].x;
 
-        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_LEFT_OF_BODY] = joints[GestureInfo.RIGHT_HAND].x<joints[GestureInfo.LEFT_SHOULDER].x;
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_LEFT_OF_BODY] =
+                joints[GestureInfo.RIGHT_HAND].x < joints[GestureInfo.LEFT_SHOULDER].x;
 
-        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RIGHT_OF_BODY] = joints[GestureInfo.LEFT_HAND].x>joints[GestureInfo.RIGHT_SHOULDER].x;
+        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RIGHT_OF_BODY] =
+                joints[GestureInfo.LEFT_HAND].x > joints[GestureInfo.RIGHT_SHOULDER].x;
 
-        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RIGHT_OF_BODY] = joints[GestureInfo.RIGHT_HAND].x>joints[GestureInfo.RIGHT_SHOULDER].x;
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RIGHT_OF_BODY] =
+                joints[GestureInfo.RIGHT_HAND].x > joints[GestureInfo.RIGHT_SHOULDER].x;
 
-        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_BETWEEN_SHOULDERS] = !GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_LEFT_OF_BODY] &&
-                !GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RIGHT_OF_BODY];
+        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_BETWEEN_SHOULDERS] =
+                !GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_LEFT_OF_BODY]
+                        && !GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RIGHT_OF_BODY];
 
-        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_BETWEEN_SHOULDERS] = !GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_LEFT_OF_BODY] &&
-                !GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RIGHT_OF_BODY];
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_BETWEEN_SHOULDERS] =
+                !GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_LEFT_OF_BODY]
+                        && !GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RIGHT_OF_BODY];
 
 
-        float leftLowerArmDiff = joints[GestureInfo.LEFT_HAND].x-joints[GestureInfo.LEFT_ELBOW].x;
-        float leftUpperArmDiff = joints[GestureInfo.LEFT_SHOULDER].x-joints[GestureInfo.LEFT_ELBOW].x;
+        float leftLowerArmDiff = joints[GestureInfo.LEFT_HAND].x - joints[GestureInfo.LEFT_ELBOW].x;
+        float leftUpperArmDiff = joints[GestureInfo.LEFT_SHOULDER].x - joints[GestureInfo.LEFT_ELBOW].x;
 
         leftLowerArmDiff = PApplet.abs(leftLowerArmDiff);
         leftUpperArmDiff = PApplet.abs(leftUpperArmDiff);
 
-        GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_VERTICAL] = leftLowerArmDiff<distanceMeter && leftUpperArmDiff<distanceMeter;
+        GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_VERTICAL] =
+                leftLowerArmDiff < distanceMeter && leftUpperArmDiff < distanceMeter;
 
-        float rightLowerArmDiff = joints[GestureInfo.RIGHT_HAND].x-joints[GestureInfo.RIGHT_ELBOW].x;
-        float rightUpperArmDiff = joints[GestureInfo.RIGHT_SHOULDER].x-joints[GestureInfo.RIGHT_ELBOW].x;
+        float rightLowerArmDiff = joints[GestureInfo.RIGHT_HAND].x - joints[GestureInfo.RIGHT_ELBOW].x;
+        float rightUpperArmDiff = joints[GestureInfo.RIGHT_SHOULDER].x - joints[GestureInfo.RIGHT_ELBOW].x;
 
         rightLowerArmDiff = PApplet.abs(rightLowerArmDiff);
         rightUpperArmDiff = PApplet.abs(rightUpperArmDiff);
 
-        GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_VERTICAL] = rightLowerArmDiff<distanceMeter && rightUpperArmDiff<distanceMeter;
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_VERTICAL] =
+                rightLowerArmDiff < distanceMeter && rightUpperArmDiff < distanceMeter;
 
-        float leftLowerArmDiffY = joints[GestureInfo.LEFT_HAND].y-joints[GestureInfo.LEFT_ELBOW].y;
-        float leftUpperArmDiffY = joints[GestureInfo.LEFT_SHOULDER].y-joints[GestureInfo.LEFT_ELBOW].y;
+        float leftLowerArmDiffY = joints[GestureInfo.LEFT_HAND].y - joints[GestureInfo.LEFT_ELBOW].y;
+        float leftUpperArmDiffY = joints[GestureInfo.LEFT_SHOULDER].y - joints[GestureInfo.LEFT_ELBOW].y;
 
         leftLowerArmDiffY = PApplet.abs(leftLowerArmDiffY);
         leftUpperArmDiffY = PApplet.abs(leftUpperArmDiffY);
 
-        GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_HORIZONTAL] = leftLowerArmDiffY<distanceMeter && leftUpperArmDiffY<distanceMeter;
+        GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_HORIZONTAL] =
+                leftLowerArmDiffY < distanceMeter && leftUpperArmDiffY < distanceMeter;
 
         //println("Left arm horizontal: "+GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_HORIZONTAL]);
 
-        float rightLowerArmDiffY = joints[GestureInfo.RIGHT_HAND].y-joints[GestureInfo.RIGHT_ELBOW].y;
-        float rightUpperArmDiffY = joints[GestureInfo.RIGHT_SHOULDER].y-joints[GestureInfo.RIGHT_ELBOW].y;
+        float rightLowerArmDiffY = joints[GestureInfo.RIGHT_HAND].y - joints[GestureInfo.RIGHT_ELBOW].y;
+        float rightUpperArmDiffY = joints[GestureInfo.RIGHT_SHOULDER].y - joints[GestureInfo.RIGHT_ELBOW].y;
 
         rightLowerArmDiffY = PApplet.abs(rightLowerArmDiffY);
         rightUpperArmDiffY = PApplet.abs(rightUpperArmDiffY);
 
-        GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_HORIZONTAL] = rightLowerArmDiffY<distanceMeter && rightUpperArmDiffY<distanceMeter;
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_HORIZONTAL] =
+                rightLowerArmDiffY < distanceMeter && rightUpperArmDiffY < distanceMeter;
 
-        GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_EXTENDED] = joints[GestureInfo.RIGHT_HAND].x>joints[GestureInfo.RIGHT_ELBOW].x &&
-                joints[GestureInfo.RIGHT_ELBOW].x>joints[GestureInfo.RIGHT_SHOULDER].x;
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_EXTENDED] =
+                joints[GestureInfo.RIGHT_HAND].x > joints[GestureInfo.RIGHT_ELBOW].x
+                        && joints[GestureInfo.RIGHT_ELBOW].x > joints[GestureInfo.RIGHT_SHOULDER].x;
 
         //println("Right arm extended: "+GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_EXTENDED]);
 
-        GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_EXTENDED]= joints[GestureInfo.LEFT_HAND].x<joints[GestureInfo.LEFT_ELBOW].x &&
-                joints[GestureInfo.LEFT_ELBOW].x<joints[GestureInfo.LEFT_SHOULDER].x;
-        //println("Left arm extended: "+ GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_EXTENDED]);
+        GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_EXTENDED] =
+                joints[GestureInfo.LEFT_HAND].x < joints[GestureInfo.LEFT_ELBOW].x
+                        && joints[GestureInfo.LEFT_ELBOW].x < joints[GestureInfo.LEFT_SHOULDER].x;
 
-        GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_ABOVE_TORSO] = joints[GestureInfo.LEFT_HAND].y> joints[GestureInfo.TORSO].y;
-        GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_ABOVE_TORSO] =joints[GestureInfo.RIGHT_HAND].y> joints[GestureInfo.TORSO].y;
+        GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_ABOVE_TORSO] =
+                joints[GestureInfo.LEFT_HAND].y > joints[GestureInfo.TORSO].y;
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_ABOVE_TORSO] =
+                joints[GestureInfo.RIGHT_HAND].y > joints[GestureInfo.TORSO].y;
     }
 
-    public Gesture checkGestures(PVector[] joints){
-
-        float maxValue=-1.0f;
+    public Gesture checkGestures(PVector[] joints) {
+        float maxValue = -1.0f;
         Gesture maxGesture = null;
 
-        //Go through and call each Gesture's update, see what it returns and return the max.
-        for (int i = 0; i<gestures.size(); i++){
-
-            float confidenceValue = gestures.get(i).update(joints);
-            if(confidenceValue>maxValue){
+        // Go through and call each Gesture's update; see what it returns and return the max.
+        for(Gesture gesture : gestures) {
+            final float confidenceValue = gesture.update(joints);
+            if (confidenceValue > maxValue) {
                 maxValue = confidenceValue;
-                maxGesture = gestures.get(i);
-
+                maxGesture = gesture;
             }
-
         }
 
         return maxGesture;
