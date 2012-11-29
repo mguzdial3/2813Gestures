@@ -48,7 +48,6 @@ public class SimpleOpenNIUser extends PApplet {
         /*
         PVector jointPos = new PVector();
         context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_NECK,jointPos);
-        println(jointPos);
         */
 
         context.drawLimb(userId, SimpleOpenNI.SKEL_HEAD, SimpleOpenNI.SKEL_NECK);

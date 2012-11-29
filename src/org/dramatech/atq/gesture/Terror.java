@@ -19,8 +19,6 @@ public class Terror extends Gesture {
                 // If leftHand is below leftElbow which is below leftShoulder (or right)
                 if (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_DOWN]
                         && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_DOWN]) {
-                    //birth is totes happening
-                    //print("Got the starter");
                     state = GestureState.BIRTH;
                     confidence = 0.0f;
                     return true;

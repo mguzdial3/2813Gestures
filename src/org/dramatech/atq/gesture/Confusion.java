@@ -42,7 +42,6 @@ public class Confusion extends Gesture {
                         final PVector diffHand = PVector.sub(joints[GestureInfo.RIGHT_HAND],
                                 prevJoints[GestureInfo.RIGHT_HAND]);
                         usingLeftArm = false;
-                        PApplet.println("Confusion: Not using 'left'");
                         tempo += diffHand.mag();
                     }
                     return true;

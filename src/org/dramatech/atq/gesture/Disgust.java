@@ -49,7 +49,6 @@ public class Disgust extends Gesture {
                         usingLeftArm = true;
                         tempo += diffHand.mag();
 
-                        PApplet.println("Using left arm");
                     } else if ((!GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RISING]
                             && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RISING])) {
 
