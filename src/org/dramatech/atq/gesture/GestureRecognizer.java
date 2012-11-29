@@ -29,6 +29,7 @@ public class GestureRecognizer extends PApplet {
     GestureController controller;
     int checkGestures;
     Gesture currGesture;
+    public final static float PRECISION = 0.1f;
 
     PFrame gestureInfoFrame;
 
@@ -83,7 +84,7 @@ public class GestureRecognizer extends PApplet {
         final PVector pos = new PVector();
         pushStyle();
         strokeWeight(15);
-        for (int userId = 1; userId <= 10; userId++) {
+        for (int userId = 0; userId < 10; userId++) {
             if (context.isTrackingSkeleton(userId)) {
                 context.getCoM(userId, pos);
                 final PVector displayPos = new PVector();
@@ -163,16 +164,14 @@ public class GestureRecognizer extends PApplet {
         gestureInfoFrame.s.fill(0);
         gestureInfoFrame.s.rect(0, 0, gestureInfoFrame.w, gestureInfoFrame.h);
         if (currGesture != null) {
-            if (currGesture.confidence > 0.1f) {
-                //Erase previous
-                if (currGesture.confidence > 0) {
-                    gestureInfoFrame.s.fill(255, 255, 255);
-                    gestureInfoFrame.s.text(currGesture.name
-                            + ". Con: " + currGesture.confidence
-                            + ". Dur: "
-                            + currGesture.duration
-                            + ". Tempo: " + currGesture.tempo, 0, 50);
-                }
+            if (currGesture.confidence >= PRECISION) {
+                // Erase previous
+                gestureInfoFrame.s.fill(255, 255, 255);
+                gestureInfoFrame.s.text(currGesture.name
+                        + ". Con: " + currGesture.confidence
+                        + ". Dur: "
+                        + currGesture.duration
+                        + ". Tempo: " + currGesture.tempo, 0, 50);
             }
         }
     }
@@ -210,8 +209,6 @@ public class GestureRecognizer extends PApplet {
 
 
     public void sendJointPosition(final int userId) {
-        if (currGesture == null) return;
-
         final PVector centerOfMass = new PVector();
 
         // Get the joint position of the right hand
@@ -221,19 +218,25 @@ public class GestureRecognizer extends PApplet {
     }
 
     public void sendJointPosition(final PVector centerOfMass) {
-        if (currGesture == null) return;
-
         // Create an OSC message
-        final OscMessage gestureMessage = new OscMessage("/" + currGesture.name);
+        final String name = "/"
+                + (currGesture == null || currGesture.confidence < PRECISION ? "Neutral" : currGesture.name);
+        final OscMessage gestureMessage = new OscMessage(name);
 
         // Send joint position of all axises by OSC
         gestureMessage.add(centerOfMass.x);
         gestureMessage.add(centerOfMass.y);
         gestureMessage.add(centerOfMass.z);
 
-        gestureMessage.add(currGesture.confidence);
-        gestureMessage.add(currGesture.duration);
-        gestureMessage.add(currGesture.tempo);
+        if (currGesture != null) {
+            gestureMessage.add(currGesture.confidence);
+            gestureMessage.add(currGesture.duration);
+            gestureMessage.add(currGesture.tempo);
+        } else {
+            gestureMessage.add(0);
+            gestureMessage.add(0);
+            gestureMessage.add(0);
+        }
 
         oscP5.send(gestureMessage, myRemoteLocation);
     }
