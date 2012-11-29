@@ -163,16 +163,14 @@ public class GestureRecognizer extends PApplet {
         }
         gestureInfoFrame.s.fill(0);
         gestureInfoFrame.s.rect(0, 0, gestureInfoFrame.w, gestureInfoFrame.h);
-        if (currGesture != null) {
-            if (currGesture.confidence >= PRECISION) {
-                // Erase previous
-                gestureInfoFrame.s.fill(255, 255, 255);
-                gestureInfoFrame.s.text(currGesture.name
-                        + ". Con: " + currGesture.confidence
-                        + ". Dur: "
-                        + currGesture.duration
-                        + ". Tempo: " + currGesture.tempo, 0, 50);
-            }
+        if (currGesture != null && currGesture.confidence >= PRECISION) {
+            // Erase previous
+            gestureInfoFrame.s.fill(255, 255, 255);
+            gestureInfoFrame.s.text(currGesture.name
+                    + ". Con: " + currGesture.confidence
+                    + ". Dur: "
+                    + currGesture.duration
+                    + ". Tempo: " + currGesture.tempo, 0, 50);
         }
     }
 
