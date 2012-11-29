@@ -18,7 +18,7 @@ public class PFrame extends Frame {
         setVisible(true);
     }
 
-    public PFrame(String title) {
+    public PFrame(final String title) {
         this();
         this.setTitle(title);
     }

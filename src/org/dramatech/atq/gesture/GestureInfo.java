@@ -38,8 +38,8 @@ class GestureInfo {
     // Less than half a neck length away from head
     public static final int LEFT_HAND_NEAR_HEAD = 12;
     public static final int RIGHT_HAND_NEAR_HEAD = 13;
-    public static final int RIGHT_KNEE_GOING_BACK= 14;
-    public static final int LEFT_KNEE_GOING_BACK= 15;
+    public static final int RIGHT_KNEE_GOING_BACK = 14;
+    public static final int LEFT_KNEE_GOING_BACK = 15;
 
     // Below shoulder, but above elbow
     public static final int LEFT_HAND_BELOW_SHOULDER = 16;
@@ -53,7 +53,7 @@ class GestureInfo {
 
     // Left hand is above shoulder and elbow
     public static final int LEFT_ARM_UP = 22;
-    // Right hand is below shouler and elbow
+    // Right hand is below shoulder and elbow
     public static final int RIGHT_ARM_UP = 23;
 
     public static final int HANDS_TOGETHER = 24;
@@ -87,11 +87,9 @@ class GestureInfo {
     // Length of array, should always be one more than previous entry
     public static final int NUMBER_OF_PIECES = 42;
 
-
     public static boolean[] gesturePieces;
-    public static void init(){
+
+    public static void init() {
         gesturePieces = new boolean[NUMBER_OF_PIECES];
     }
-
-
 }

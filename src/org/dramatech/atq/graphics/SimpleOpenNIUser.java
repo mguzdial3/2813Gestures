@@ -2,10 +2,11 @@ package org.dramatech.atq.graphics;
 
 import SimpleOpenNI.SimpleOpenNI;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class SimpleOpenNIUser extends PApplet {
 
-    public SimpleOpenNI  context;
+    public SimpleOpenNI context;
 
     public void setup() {
         context = new SimpleOpenNI(this, SimpleOpenNI.RUN_MODE_MULTI_THREADED);
@@ -22,25 +23,27 @@ public class SimpleOpenNIUser extends PApplet {
         strokeWeight(3);
         smooth();
 
-        size(context.depthWidth(), context.depthHeight());
+        final int depthWidth = context.depthWidth();
+        final int depthHeight = context.depthHeight();
+        size(depthWidth, depthHeight);
     }
 
-    public void draw()
-    {
+    public void draw() {
         // Update the cam
         context.update();
 
         // Draw depthImageMap
-        image(context.depthImage(), 0, 0);
+        final PImage depthImage = context.depthImage();
+        image(depthImage, 0, 0);
 
         // Draw the skeleton if it's available
-        if(context.isTrackingSkeleton(1)) {
+        if (context.isTrackingSkeleton(1)) {
             drawSkeleton(1);
         }
     }
 
     // Draw the skeleton with the selected joints
-    public void drawSkeleton(int userId) {
+    public void drawSkeleton(final int userId) {
         // To get the 3d joint data:
         /*
         PVector jointPos = new PVector();
@@ -70,28 +73,27 @@ public class SimpleOpenNIUser extends PApplet {
         context.drawLimb(userId, SimpleOpenNI.SKEL_RIGHT_KNEE, SimpleOpenNI.SKEL_RIGHT_FOOT);
     }
 
-    // -----------------------------------------------------------------
     // SimpleOpenNI events
 
-    public void onNewUser(int userId) {
+    public void onNewUser(final int userId) {
         println("onNewUser - userId: " + userId);
         println("  start pose detection");
 
         context.startPoseDetection("Psi", userId);
     }
 
-    public void onLostUser(int userId) {
+    public void onLostUser(final int userId) {
         println("onLostUser - userId: " + userId);
     }
 
-    public void onStartCalibration(int userId) {
+    public void onStartCalibration(final int userId) {
         println("onStartCalibration - userId: " + userId);
     }
 
-    public void onEndCalibration(int userId, boolean successfull) {
-        println("onEndCalibration - userId: " + userId + ", successfull: " + successfull);
+    public void onEndCalibration(final int userId, final boolean successful) {
+        println("onEndCalibration - userId: " + userId + ", successful: " + successful);
 
-        if (successfull) {
+        if (successful) {
             println("  User calibrated !!!");
             context.startTrackingSkeleton(userId);
         } else {
@@ -101,7 +103,7 @@ public class SimpleOpenNIUser extends PApplet {
         }
     }
 
-    public void onStartPose(String pose, int userId) {
+    public void onStartPose(final String pose, final int userId) {
         println("onStartPose - userId: " + userId + ", pose: " + pose);
         println(" stop pose detection");
 
@@ -110,7 +112,7 @@ public class SimpleOpenNIUser extends PApplet {
 
     }
 
-    public void onEndPose(String pose, int userId) {
+    public void onEndPose(final String pose, final int userId) {
         println("onEndPose - userId: " + userId + ", pose: " + pose);
     }
 }

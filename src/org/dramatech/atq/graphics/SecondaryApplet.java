@@ -5,11 +5,11 @@ import processing.core.PApplet;
 public class SecondaryApplet extends PApplet {
     int w, h;
 
-    public SecondaryApplet(){
+    public SecondaryApplet() {
         super();
     }
 
-    public SecondaryApplet(int w, int h){
+    public SecondaryApplet(final int w, final int h) {
         super();
         this.w = w;
         this.h = h;
