@@ -1,7 +1,6 @@
 package org.dramatech.atq.graphics;
 
 import java.awt.Frame;
-import org.dramatech.atq.gesture.GestureTest;
 
 public class PFrame extends Frame {
     public SecondaryApplet s;

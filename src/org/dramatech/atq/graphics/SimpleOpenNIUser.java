@@ -3,7 +3,7 @@ package org.dramatech.atq.graphics;
 import SimpleOpenNI.SimpleOpenNI;
 import processing.core.PApplet;
 
-public class SimpleOpenNI_User_eclipse extends PApplet {
+public class SimpleOpenNIUser extends PApplet {
 
     public SimpleOpenNI  context;
 
@@ -40,8 +40,7 @@ public class SimpleOpenNI_User_eclipse extends PApplet {
     }
 
     // Draw the skeleton with the selected joints
-    public void drawSkeleton(int userId)
-    {
+    public void drawSkeleton(int userId) {
         // To get the 3d joint data:
         /*
         PVector jointPos = new PVector();
@@ -74,43 +73,35 @@ public class SimpleOpenNI_User_eclipse extends PApplet {
     // -----------------------------------------------------------------
     // SimpleOpenNI events
 
-    public void onNewUser(int userId)
-    {
+    public void onNewUser(int userId) {
         println("onNewUser - userId: " + userId);
         println("  start pose detection");
 
         context.startPoseDetection("Psi", userId);
     }
 
-    public void onLostUser(int userId)
-    {
+    public void onLostUser(int userId) {
         println("onLostUser - userId: " + userId);
     }
 
-    public void onStartCalibration(int userId)
-    {
+    public void onStartCalibration(int userId) {
         println("onStartCalibration - userId: " + userId);
     }
 
-    public void onEndCalibration(int userId, boolean successfull)
-    {
+    public void onEndCalibration(int userId, boolean successfull) {
         println("onEndCalibration - userId: " + userId + ", successfull: " + successfull);
 
-        if (successfull)
-        {
+        if (successfull) {
             println("  User calibrated !!!");
             context.startTrackingSkeleton(userId);
-        }
-        else
-        {
+        } else {
             println("  Failed to calibrate user !!!");
             println("  Start pose detection");
             context.startPoseDetection("Psi", userId);
         }
     }
 
-    public void onStartPose(String pose, int userId)
-    {
+    public void onStartPose(String pose, int userId) {
         println("onStartPose - userId: " + userId + ", pose: " + pose);
         println(" stop pose detection");
 
@@ -119,8 +110,7 @@ public class SimpleOpenNI_User_eclipse extends PApplet {
 
     }
 
-    public void onEndPose(String pose, int userId)
-    {
+    public void onEndPose(String pose, int userId) {
         println("onEndPose - userId: " + userId + ", pose: " + pose);
     }
 }
