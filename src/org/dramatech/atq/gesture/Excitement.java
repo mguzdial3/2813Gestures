@@ -4,13 +4,11 @@ import processing.core.PVector;
 
 public class Excitement extends Gesture {
 
-
     public Excitement() {
         super();
         super.name = "Excitement";
         prevJoints = new PVector[GestureInfo.JOINTS_LENGTH];
     }
-
 
     // Checks is birth is happening,
     // In this case hand is below elbow which is below shoulder at first

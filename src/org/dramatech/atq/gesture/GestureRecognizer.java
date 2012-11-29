@@ -58,10 +58,10 @@ public class GestureRecognizer extends PApplet {
         controller = new GestureController();
         GestureInfo.init();
 
-        // Start oscP5, telling it to listen for incoming messages at port 5001
+        // Start oscP5, telling it to listen for incoming messages
         oscP5 = new OscP5(this, 50001);
 
-        // Set the remote location to be the localhost on port 5001
+        // The remote server
         // TODO: Load this from config file?
         myRemoteLocation = new NetAddress("127.0.0.1", 57131);
 
@@ -149,7 +149,6 @@ public class GestureRecognizer extends PApplet {
                     context.getJointPositionSkeleton(i, SimpleOpenNI.SKEL_RIGHT_KNEE, jointPos10);
                     joints[GestureInfo.RIGHT_KNEE] = jointPos10;
 
-
                     final Gesture response = controller.updateGestures(joints);
 
                     if (response != null) {
@@ -225,7 +224,7 @@ public class GestureRecognizer extends PApplet {
         if (currGesture == null) return;
 
         // Create an OSC message
-        final OscMessage gestureMessage = new OscMessage(File.pathSeparatorChar + currGesture.name);
+        final OscMessage gestureMessage = new OscMessage("/" + currGesture.name);
 
         // Send joint position of all axises by OSC
         gestureMessage.add(centerOfMass.x);
@@ -279,7 +278,6 @@ public class GestureRecognizer extends PApplet {
 
         context.stopPoseDetection(userId);
         context.requestCalibrationSkeleton(userId, true);
-
     }
 
     public void onEndPose(final String pose, final int userId) {
