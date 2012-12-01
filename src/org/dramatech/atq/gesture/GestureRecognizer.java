@@ -95,11 +95,7 @@ public class GestureRecognizer extends PApplet {
                 context.getCoM(userId, pos);
                 final PVector displayPos = new PVector();
                 context.convertRealWorldToProjective(pos, displayPos);
-<<<<<<< HEAD
-                sendJointPosition(userId, displayPos);
-=======
-                sendJointPosition(pos, userId);
->>>>>>> Changed to send CoM not Displayed CoM
+                sendJointPosition(userId, pos);
                 stroke(0, 255, 0);
                 point(displayPos.x, displayPos.y);
                 //System.out.println("Center of Mass: "+pos);
