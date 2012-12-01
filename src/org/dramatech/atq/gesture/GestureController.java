@@ -12,8 +12,8 @@ public class GestureController {
 
     public GestureController() {
         // NOT CHECK
-        final Gesture disgust = new Disgust();
-        gestures.add(disgust);
+        //final Gesture disgust = new Disgust();
+        //gestures.add(disgust);
 
         // NOT CHECK
         final Gesture exhaustion = new Exhaustion();
@@ -64,87 +64,10 @@ public class GestureController {
 
     public void setGesturePieces(final PVector[] joints) {
         // Left hand rising (Might want to change these first four to be based on the normalized vector
-
-        if (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RISING]) {
-            GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RISING] =
-                    joints[GestureInfo.LEFT_HAND].y > prevJoints[GestureInfo.LEFT_HAND].y;
-            if (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RISING]) {
-                counters[GestureInfo.LEFT_HAND_RISING] = 3;
-            } else {
-                if (counters[GestureInfo.LEFT_HAND_RISING] != 0) {
-                    counters[GestureInfo.LEFT_HAND_RISING] -= 1;
-                    GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RISING] = true;
-                }
-            }
-        } else {
-            GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RISING] =
-                    joints[GestureInfo.LEFT_HAND].y > prevJoints[GestureInfo.LEFT_HAND].y;
-            if (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RISING]) {
-                counters[GestureInfo.LEFT_HAND_RISING] = 3;
-            }
-        }
-
-        // Right hand rising
-        if (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RISING]) {
-            GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RISING] =
-                    joints[GestureInfo.RIGHT_HAND].y > prevJoints[GestureInfo.RIGHT_HAND].y;
-            if (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RISING]) {
-                counters[GestureInfo.RIGHT_HAND_RISING] = 3;
-            } else {
-                if (counters[GestureInfo.RIGHT_HAND_RISING] != 0) {
-                    counters[GestureInfo.RIGHT_HAND_RISING] -= 1;
-                    GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RISING] = true;
-                }
-            }
-        } else {
-            GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RISING]
-                    = joints[GestureInfo.RIGHT_HAND].y > prevJoints[GestureInfo.RIGHT_HAND].y;
-            if (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RISING]) {
-                counters[GestureInfo.RIGHT_HAND_RISING] = 3;
-            }
-        }
-
-
-        // Left hand falling
-        if (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_FALLING]) {
-            GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_FALLING] =
-                    joints[GestureInfo.LEFT_HAND].y < prevJoints[GestureInfo.LEFT_HAND].y;
-            if (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_FALLING]) {
-                counters[GestureInfo.LEFT_HAND_FALLING] = 3;
-
-            } else {
-                if (counters[GestureInfo.LEFT_HAND_FALLING] != 0) {
-                    counters[GestureInfo.LEFT_HAND_FALLING] -= 1;
-                    GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_FALLING] = true;
-                }
-            }
-        } else {
-            GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_FALLING]
-                    = joints[GestureInfo.LEFT_HAND].y < prevJoints[GestureInfo.LEFT_HAND].y;
-            if (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_FALLING]) {
-                counters[GestureInfo.LEFT_HAND_FALLING] = 3;
-            }
-        }
-
-        // Right hand falling
-        if (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_FALLING]) {
-            GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_FALLING]
-                    = joints[GestureInfo.RIGHT_HAND].y < prevJoints[GestureInfo.RIGHT_HAND].y;
-            if (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_FALLING]) {
-                counters[GestureInfo.RIGHT_HAND_FALLING] = 3;
-            } else {
-                if (counters[GestureInfo.RIGHT_HAND_FALLING] != 0) {
-                    counters[GestureInfo.RIGHT_HAND_FALLING] -= 1;
-                    GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_FALLING] = true;
-                }
-            }
-        } else {
-            GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_FALLING]
-                    = joints[GestureInfo.RIGHT_HAND].y < prevJoints[GestureInfo.RIGHT_HAND].y;
-            if (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_FALLING]) {
-                counters[GestureInfo.RIGHT_HAND_FALLING] = 3;
-            }
-        }
+    	GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_FALLING] = joints[GestureInfo.RIGHT_HAND].y<prevJoints[GestureInfo.RIGHT_HAND].y;
+        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_FALLING] = joints[GestureInfo.LEFT_HAND].y<prevJoints[GestureInfo.LEFT_HAND].y;
+        GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RISING] = joints[GestureInfo.RIGHT_HAND].y>prevJoints[GestureInfo.RIGHT_HAND].y;
+        GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_RISING] = joints[GestureInfo.LEFT_HAND].y>prevJoints[GestureInfo.LEFT_HAND].y;
 
         // Left hand down
         GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_DOWN] =
@@ -243,6 +166,9 @@ public class GestureController {
         rAngle = PVector.angleBetween(rUpperArm, rLowerArm);
         lAngle = PVector.angleBetween(lUpperArm, lLowerArm);
 
+        rAngle = (float) (180*(rAngle)/3.14f);
+        lAngle = (float) (180*(lAngle)/3.14f);
+        
         GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_ANGLE_DECREASING] = lAngle < prevLAngle;
         GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_ANGLE_DECREASING] = rAngle < prevRAngle;
 

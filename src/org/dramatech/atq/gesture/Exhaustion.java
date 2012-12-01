@@ -72,7 +72,11 @@ public class Exhaustion extends Gesture {
     public boolean deathChecker() {
         if (state == GestureState.LIFE || state == GestureState.DEATH) {
             if (((GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_FALLING])
-                    && (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_FALLING]))) {
+                    && (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_FALLING]))
+                    || (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_STILL]
+                    && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_STILL])
+                    && GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_DOWN]
+                            && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_DOWN]) {
                 final PVector diffHand =
                         PVector.sub(joints[GestureInfo.LEFT_HAND], prevJoints[GestureInfo.LEFT_HAND]);
                 final PVector diffHandR =
