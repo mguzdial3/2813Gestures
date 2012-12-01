@@ -95,7 +95,7 @@ public class GestureRecognizer extends PApplet {
                 context.getCoM(userId, pos);
                 final PVector displayPos = new PVector();
                 context.convertRealWorldToProjective(pos, displayPos);
-                sendJointPosition(displayPos, userId);
+                sendJointPosition(userId, displayPos);
                 stroke(0, 255, 0);
                 point(displayPos.x, displayPos.y);
             }
@@ -221,13 +221,14 @@ public class GestureRecognizer extends PApplet {
         // Get the joint position of the right hand
         context.getCoM(userId, centerOfMass);
 
-        sendJointPosition(centerOfMass, userId);
+        sendJointPosition(userId, centerOfMass);
     }
 
-    public void sendJointPosition(final PVector centerOfMass, int userId) {
+    public void sendJointPosition(final int userId, final PVector centerOfMass) {
         // Create an OSC message
         final String name = "/"
-                + (currGesture[userId] == null || currGesture[userId].confidence < PRECISION ? "Neutral" : currGesture[userId].name);
+                + (currGesture[userId] == null || currGesture[userId].confidence < PRECISION
+                ? "Neutral" : currGesture[userId].name);
         final OscMessage gestureMessage = new OscMessage(name);
 
         // Send joint position of all axises by OSC
