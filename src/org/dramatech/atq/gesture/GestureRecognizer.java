@@ -70,7 +70,7 @@ public class GestureRecognizer extends PApplet {
 
         // The remote server
         // TODO: Load this from config file?
-        myRemoteLocation = new NetAddress("127.0.0.1", 57131);
+        myRemoteLocation = new NetAddress("192.168.1.28", 57131);
 
         final int depthWidth = context.depthWidth();
         final int depthHeight = context.depthHeight();
@@ -95,9 +95,14 @@ public class GestureRecognizer extends PApplet {
                 context.getCoM(userId, pos);
                 final PVector displayPos = new PVector();
                 context.convertRealWorldToProjective(pos, displayPos);
+<<<<<<< HEAD
                 sendJointPosition(userId, displayPos);
+=======
+                sendJointPosition(pos, userId);
+>>>>>>> Changed to send CoM not Displayed CoM
                 stroke(0, 255, 0);
                 point(displayPos.x, displayPos.y);
+                //System.out.println("Center of Mass: "+pos);
             }
         }
         popStyle();
@@ -108,7 +113,7 @@ public class GestureRecognizer extends PApplet {
                 fill(0, 0, 255);
                 drawSkeleton(i);
 
-                if (checkGestures == 3) {
+                if (checkGestures == 4) {
                     checkGestures = 0;
                     final PVector[] joints = new PVector[GestureInfo.JOINTS_LENGTH];
 

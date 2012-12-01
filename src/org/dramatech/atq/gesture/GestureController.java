@@ -186,7 +186,7 @@ public class GestureController {
                         && joints[GestureInfo.RIGHT_ELBOW].y > joints[GestureInfo.RIGHT_SHOULDER].y;
 
         GestureInfo.gesturePieces[GestureInfo.HANDS_TOGETHER] =
-                PVector.sub(joints[GestureInfo.LEFT_HAND], joints[GestureInfo.RIGHT_HAND]).mag() < distanceMeter * 3;
+                PVector.sub(joints[GestureInfo.LEFT_HAND], joints[GestureInfo.RIGHT_HAND]).mag() < distanceMeter *2;
 
         // Hands above head
         GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_UP] =

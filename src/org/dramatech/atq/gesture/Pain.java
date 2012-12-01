@@ -61,7 +61,8 @@ public class Pain extends Gesture {
                     && GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_BELOW_SHOULDER]
                     && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_BELOW_SHOULDER]
                     && GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_MOVING_RIGHT]
-                    && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_MOVING_LEFT]) {
+                    && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_MOVING_LEFT]
+                    ) {
 
                 duration++;
 

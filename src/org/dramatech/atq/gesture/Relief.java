@@ -55,7 +55,8 @@ public class Relief extends Gesture {
                     && (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_BELOW_SHOULDER]
                     && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_BELOW_SHOULDER]))
                     && (!GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_DOWN]
-                    && !GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_DOWN])) {
+                    && !GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_DOWN])
+                    ) {
 
                 duration++;
 
@@ -79,7 +80,8 @@ public class Relief extends Gesture {
                     && (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_LEFT_OF_BODY]
                     && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_RIGHT_OF_BODY]))
                     || (GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_MOVING_LEFT]
-                    && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_MOVING_RIGHT])) {
+                    && GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_MOVING_RIGHT]
+                    )) {
 
                 final PVector diffHand =
                         PVector.sub(joints[GestureInfo.LEFT_HAND], prevJoints[GestureInfo.LEFT_HAND]);

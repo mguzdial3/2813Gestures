@@ -76,8 +76,10 @@ public class Loneliness extends Gesture {
         if (state == GestureState.LIFE || state == GestureState.DEATH) {
             if (((GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_MOVING_LEFT])
                     || (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_MOVING_RIGHT]))
-                    || ((GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_STILL])
-                    && (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_STILL]))) {
+                    || (((GestureInfo.gesturePieces[GestureInfo.LEFT_HAND_STILL])
+                    		&& GestureInfo.gesturePieces[GestureInfo.LEFT_ARM_ABOVE_TORSO])
+                    && (GestureInfo.gesturePieces[GestureInfo.RIGHT_HAND_STILL] &&
+                    		GestureInfo.gesturePieces[GestureInfo.RIGHT_ARM_ABOVE_TORSO]))) {
 
                 final PVector diffHand =
                         PVector.sub(joints[GestureInfo.LEFT_HAND], prevJoints[GestureInfo.LEFT_HAND]);
