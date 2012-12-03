@@ -1,7 +1,6 @@
 package org.dramatech.atq.gesture;
 
 import SimpleOpenNI.SimpleOpenNI;
-import java.io.File;
 import netP5.NetAddress;
 import org.dramatech.atq.graphics.PFrame;
 import oscP5.OscMessage;

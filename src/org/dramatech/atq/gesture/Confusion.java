@@ -1,6 +1,5 @@
 package org.dramatech.atq.gesture;
 
-import processing.core.PApplet;
 import processing.core.PVector;
 
 public class Confusion extends Gesture {
