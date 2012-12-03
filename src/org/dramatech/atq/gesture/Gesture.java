@@ -3,14 +3,14 @@ package org.dramatech.atq.gesture;
 import processing.core.PVector;
 
 public abstract class Gesture {
-    public float tempo, duration, confidence;
-    public String name;
+    protected float tempo, duration, confidence;
+    protected String name;
 
     // Also allows us to switch which joints we're grabbing based on what part of the gesture we're in
-    public GestureType type;
+    protected GestureType type;
 
-    public GestureState state;
-    public PVector[] joints, prevJoints;
+    protected GestureState state;
+    protected PVector[] joints, prevJoints;
 
     public Gesture() {
         this(GestureType.FULLBODY);
@@ -23,7 +23,7 @@ public abstract class Gesture {
     }
 
     // Returns confidence at this moment
-    public float update(final PVector[] joints) {
+    protected float update(final PVector[] joints) {
         this.joints = joints;
 
         if (prevJoints[GestureInfo.LEFT_HAND] != null) {
