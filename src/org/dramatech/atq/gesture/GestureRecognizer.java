@@ -57,7 +57,7 @@ public class GestureRecognizer extends PApplet {
         final PFont font = loadFont("Serif-30.vlw");
         gestureInfoFrame.s.textFont(font);
         controller = new GestureController[10];
-        for(int i =0; i<10; i++){
+        for(int i = 0; i < 10; i++){
             controller[i] = new GestureController();
          }
         
