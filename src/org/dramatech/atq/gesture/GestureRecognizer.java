@@ -11,24 +11,14 @@ import processing.core.PFont;
 import processing.core.PImage;
 import processing.core.PVector;
 
-/* --------------------------------------------------------------------------
- * SimpleOpenNI User Test
- * --------------------------------------------------------------------------
- * Processing Wrapper for the OpenNI/Kinect library
- * http://code.google.com/p/simple-openni
- * --------------------------------------------------------------------------
- * prog:  Max Rheiner / Interaction Design / zhdk / http://iad.zhdk.ch/
- * date:  02/16/2011 (m/d/y)
- * ----------------------------------------------------------------------------
- */
 public class GestureRecognizer extends PApplet {
-    OscP5 oscP5;
-    NetAddress myRemoteLocation;
-    SimpleOpenNI context;
-    boolean autoCalib = true;
-    GestureController[] controller;
-    int checkGestures;
-    Gesture[] currGesture;
+    private OscP5 oscP5;
+    private NetAddress myRemoteLocation;
+    private SimpleOpenNI context;
+    private final boolean autoCalib = true;
+    private GestureController[] controller;
+    private int checkGestures;
+    private Gesture[] currGesture;
     public final static float PRECISION = 0.1f;
 
     PFrame gestureInfoFrame;
@@ -185,7 +175,7 @@ public class GestureRecognizer extends PApplet {
     }
 
     // Draw the skeleton with the selected joints
-    public void drawSkeleton(final int userId) {
+    private void drawSkeleton(final int userId) {
         // to get the 3d joint data
         /*
         PVector jointPos = new PVector();
@@ -216,7 +206,7 @@ public class GestureRecognizer extends PApplet {
     }
 
 
-    public void sendJointPosition(final int userId) {
+    private void sendJointPosition(final int userId) {
         final PVector centerOfMass = new PVector();
 
         // Get the joint position of the right hand
@@ -225,7 +215,7 @@ public class GestureRecognizer extends PApplet {
         sendJointPosition(userId, centerOfMass);
     }
 
-    public void sendJointPosition(final int userId, final PVector centerOfMass) {
+    private void sendJointPosition(final int userId, final PVector centerOfMass) {
         // Create an OSC message
         final String name = "/"
                 + (currGesture[userId] == null || currGesture[userId].confidence < PRECISION
